@@ -1,0 +1,17 @@
+{
+  "name": "ErunMyCirco",
+  "version": "1.0.0",
+  "description": "carte interactive des écoles",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "generate": "node scripts/dataGenerator.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^3.3.2",
+    "papaparse": "^5.5.3"
+  }
+}

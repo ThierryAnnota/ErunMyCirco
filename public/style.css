@@ -1,0 +1,251 @@
+html {
+    font-family: "Roboto", "Montserrat", sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.map-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#map {
+    /* border: 1px solid black; */
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.hearder{
+    z-index: 1003;
+    position:absolute;
+    top: 20px;
+    left: 50px;
+    right: 10px;
+    display: flex;
+    justify-content: space-between;
+    width: 95vw;
+}
+
+.selectMenu{
+    text-align: end;
+    width: calc(50% - 50px);
+}
+
+#circoSelect {
+    position: relative;
+    padding: 12px 15px 15px 15px;
+    height: 45px;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
+    background-color: #ffffffc6;
+}
+
+.search-bar {
+    position: relative;
+    display: flex;
+    height: 45px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
+    border-radius: 20px;
+    background-color: #fff;
+}
+
+.suggestionsOpen{
+    border-radius: 20px 20px 0 0;
+}
+
+.search-container{
+    width: 30%;
+}
+
+/* le parent (form) réagit quand l'enfant (input) a le focus */
+.search-bar:focus-within {
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+.recherche {
+    width: 100%;
+    border: none;
+    border-radius: 20px;
+    height: 100%;
+    padding: 20px;
+    outline: none;
+}
+
+.recherche:focus, .recherche:active {
+    border: none;
+    outline: none ;
+}
+
+.validation {
+    background-color: #fff;
+    color:rgb(144, 144, 144);
+    border: none;
+    border-radius: 20px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.validation svg {
+    height: 24px;
+    width: 24px;
+
+}
+
+.suggestion:last-child{
+    border-radius: 0 0 20px 20px;
+}
+
+.suggestion{
+    background-color: #fff;
+    padding: 20px;
+}
+
+.suggestion span {
+    color: rgb(156, 156, 156);;
+}
+
+.active {
+    background-color: rgb(236, 243, 248);
+
+}
+
+.sidebar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 400px;
+    height: 100vh;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.sidebarContainer{
+    background-color:  rgb(249, 249, 249);
+    border-left: 5px solid rgb(230, 230, 230);
+    border-radius: 10px 0 0 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px 20px 10px;
+    align-items: center;
+    width: 100%;
+    height: 80%;
+    overflow: auto;
+}
+
+.circoName {
+    font-size: 2rem;
+    position: sticky;
+    top: 0;
+    background-color: inherit;
+    width: 90%;
+    text-align: center;
+    padding: 60px 25px 25px 25px;
+    border-radius: 10px;
+}
+
+.circoName::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -10px; /* sort un peu du header */
+    height: 20px;
+    pointer-events: none;
+  
+    /* le dégradé + flou */
+    background: linear-gradient(to bottom, rgba(255,255,255,1), rgba(255,255,255,0));
+    filter: blur(6px);
+  }
+
+.ville {
+    font-size: 1.7rem;
+    background-color: #fff;
+    width: 90%;
+    text-align: center;
+    padding: 25px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border-bottom: 3px solid rgb(234, 233, 232);
+}
+
+.sidebarContainer ul {
+    list-style: none;
+    width: 90%;
+    padding: 0;
+    margin: 0;
+}
+
+.ecole {
+    font-size: 1.2rem;
+    width: 100%;
+    background-color: #fff;
+    text-align: center;
+    padding: 25px;
+    margin: 5px 0;
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+
+.ecole:hover, .ville:hover {
+    background-color: rgb(236, 243, 248);
+}
+
+.selected {
+    background-color: rgb(232, 241, 240);
+}
+
+.sidebarButton {
+    background-color: rgb(249, 249, 249);
+    padding: 12px 0 10px 5px;
+    border-radius: 5px 0 0 5px;
+}
+
+.hidden {
+    right: -370px;
+    transition: 0.3s;
+}
+
+.close {
+    transform: rotate(180deg);
+    padding: 12px 5px 10px 0;
+}
+
+.ecolePopup {
+    border-radius: 5px;
+    
+    h4 {
+        background-color: rgb(16, 138, 156);
+        color: #fff;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: 700;
+        padding: 5px;
+    }
+
+    p {
+        padding-left: 5px;
+    }
+
+    span {
+        font-weight: 600;
+    }
+
+    .ienPopup {
+        background-color: rgb(232, 98, 69);
+    }
+
+}
