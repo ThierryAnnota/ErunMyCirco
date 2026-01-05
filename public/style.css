@@ -57,6 +57,12 @@ html {
     background-color: #fff;
 }
 
+.suggestions {
+    overflow: auto;
+    max-height: 80vh;
+    border-radius: 0 0 20px 20px;
+}
+
 .suggestionsOpen{
     border-radius: 20px 20px 0 0;
 }
