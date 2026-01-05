@@ -63,8 +63,8 @@ export function createInspectionMarker (inspection) {
         <div class="ecolePopup">
                     <h4 class="ienPopup">${inspection.nom}</h4>
                     <p><span>Adresse :</span> ${inspection.inspection.adresse}, ${inspection.inspection.commune}</p>
-                    <p><span>Email :</span> ${inspection.inspection.email} <a href="mailto:${inspection.email}">✉️</a></p>
-                    <p><span>Tel :</span> ${inspection.inspection.tel} <a href="tel:${inspection.tel}">☎️</a></p>
+                    <p><span>Email :</span> ${inspection.inspection.email} <a href="mailto:${inspection.inspection.email}">✉️</a></p>
+                    <p><span>Tel :</span> ${inspection.inspection.tel} <a href="tel:${inspection.inspection.tel}">☎️</a></p>
                     <p><span>Nombre d'école(s) :</span> ${inspection.count_ecoles}</p>
                 </div> 
     `)

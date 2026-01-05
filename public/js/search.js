@@ -54,7 +54,8 @@ export function initSearchMenu () {
 
 export function handleChangeInput () {
     const value = searchInput.value
-    const result = state.data.ecoles.filter((ecole)=> ecole.nom.toLowerCase().includes(value.toLowerCase()));
+    const result = state.data.ecoles.filter((ecole)=> ecole.nom.toLowerCase().includes(value.toLowerCase()) 
+        || ecole.email.toLowerCase().includes(value.toLowerCase()) || ecole.tel.replace(/\s+(?=\d)/g, "").includes(value.replace(/\s+(?=\d)/g, "")));
 
     if(suggestion!== ""){
         suggestion = "";
