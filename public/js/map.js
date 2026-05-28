@@ -1,4 +1,5 @@
 import { state } from "./state.js";
+import { routeCalculation } from "./sidebarLeft.js";
 
 export function initMap() {
     state.map = L.map('map').setView([48.84871, 2.210847], 12);
@@ -52,6 +53,7 @@ function createColoredIcon(color, width, height) {
 // Utilisation
 const inspectionIcon = createColoredIcon('#ef4444', 32, 45); // rouge
 const ecoleIcon = createColoredIcon('#3b82f6', 24, 35);      // bleu
+const homeIcon = createColoredIcon('#71b793', 24, 35);      // vert
 
 
 
@@ -96,6 +98,7 @@ export function createEcoleMarker (ecoles) {
                <div class="ecolePopup">
                     <h4>école ${ecole.type} ${ecole.nom}</h4>
                     <p><span>Adresse :</span> ${ecole.adresse}, ${ecole.commune}</p>
+                    <p><span>Circonscription :</span> ${ecole.circo.nom} (${ecole.circo.code}) </p>
                     <p><span>Email :</span> ${ecole.email} <a href="mailto:${ecole.email}">✉️</a></p>
                     <p><span>Tel :</span> ${ecole.tel} <a href="tel:${ecole.tel}">☎️</a></p>
                     <p><span>Nombre de classes :</span> ${ecole.nb_classes}</p>
@@ -107,12 +110,33 @@ export function createEcoleMarker (ecoles) {
             const lng = markerEcole._latlng.lng;
             centerOnSchool(lat, lng);
         })
-        .addTo(state.map)
+        // .on("popupopen", () => {
+        //     const itineraireButton = markerEcole.getPopup().getElement().querySelector(".itineraire");
+        //     itineraireButton.addEventListener("click", () => routeCalculation(ecole))
+
+        // })
+        .addTo(state.map);
     
         // ajout du marker au state
         state.markers.set(`ecole-${ecole.id}`, markerEcole);
     })
-}
+};
+
+export function createHomeMarker (depart) {
+    const homeMarker = L.marker([depart.coords[0] +  0.0001, depart.coords[1] + 0.0001], {icon: homeIcon})
+    .bindTooltip(`${depart.adresse}`)
+    .bindPopup(`
+        <div class="ecolePopup">
+                    <h4 class="ienPopup">Départ</h4>
+                    <p><span>Adresse :</span> ${depart.adresse},</p>
+                    
+                </div> 
+    `)
+    .addTo(state.map);
+
+    // ajout du marker au state
+    state.markers.set(`depart`, homeMarker);
+};
 
 export function clearMarkers(){
     // retirer les markers de la map

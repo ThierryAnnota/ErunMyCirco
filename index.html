@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ErunMyCirco</title>
     <link rel="stylesheet" href="./public/reset.css">
+    <link rel="stylesheet" href="./public/variables.css">
     <link rel="stylesheet" href="./public/style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
@@ -16,7 +17,7 @@
 </head>
 <body>
     <div class="map-container">
-        <div class="hearder">
+        <div class="header">
             <div class="search-container">
                 <form class="search-bar" method="get">
                     <input type="text" class="recherche" placeholder="rechercher une école par son nom, son mail, son téléphone, ...">
@@ -35,13 +36,96 @@
             </div>
         </div>
         <div id="map"></div>
-        <div class="sidebar hidden">
-            <div class="sidebarButton">
+        <div class="sidebar sidebar--right hidden">
+            <div class="sidebarButton sidebarButton--right">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="15 18 9 12 15 6"/>
                 </svg>
             </div>
-            <div class="sidebarContainer"></div>
+            <div class="sidebarContainer sidebarContainer--right"></div>
+        </div>
+        <div class="sidebar sidebar--left hidden--left">
+            <div class="sidebarContainer sidebarContainer--left"></div>
+            <div class="sidebarButton sidebarButton--left">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"/>
+                </svg>
+            </div>
+        </div>
+        <div class="mvtIntra">
+            <span class="texte-long">Filtrer les écoles par distances</span>
+            <span class="texte-court">Filtrer</span>
+        </div>
+        <div class="modale--overlay hiddenModale">
+            <form class="mvtIntraInteface">
+                <div class="modale--header">
+                    <button type="button" class="modale--closeBtn"> × </button>
+                    <div class="modale--presentation">Recherche d'écoles à proximité</div>
+                </div>
+                <section class="modale--stepAdresse">
+                    <p>Renseignez une adresse de référence pour trouver les écoles les plus proches.</p>
+                    <div class="modale--inputAdresseDiv">
+                        <input type="text" class="modale--inputAdresse">
+                        <div class="adressesSuggestions"></div>
+                    </div>
+                    <button type="button" class="modale--stepAdresse--btn">Rechercher</button>
+                </section>
+                <section class="modale--stepFilres hiddenModale">
+
+                    <div class="modale--rappelAdresse">
+                        <div class="adresseSelectionnee">
+                            <span>📍</span>
+                            <span class="adresseSelectionnee--label"></span>
+                        </div>
+                        <button type="button" id="modifierAdresse">✏️</button>
+                    </div>
+
+                    <div class="modale--typeEcoleDiv">
+                        <fieldset>
+                            <legend>TYPE D'ÉCOLE</legend>
+                            <div>
+                                <input type="checkbox" id="maternelle" checked>
+                                <label for="maternelle">Maternelle</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="elementaire" checked>
+                                <label for="elementaire">Elémentaire</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="primaire" checked>
+                                <label for="primaire">Primaire</label>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="modale--nombreClasses">
+                        <fieldset>
+                            <legend>NOMBRE DE CLASSES</legend>
+                            <label for="min">minimum</label>
+                            <input type="number" id="min" min="1" value="1">
+                            <label for="max">maximum</label>
+                            <input type="number" id="max" max="30" value="30">
+                        </fieldset>
+                    </div>
+                    <div class="modale--rep">
+                        <fieldset>
+                            <legend>Souhaitez-vous des écoles en REP ? </legend>
+                            <div>
+                                <input type="radio" id="oui" name="rep">
+                                <label for="oui">oui</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="non" name="rep">
+                                <label for="non">non</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="indif" name="rep">
+                                <label for="indif">peu importe</label>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <button type="submit">Rechercher</button>
+                </section>
+            </form>
         </div>
     </div>
 </body>

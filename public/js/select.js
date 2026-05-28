@@ -1,6 +1,7 @@
 import { state } from "./state.js";
 import {centerOnCirco, createInspectionMarker, clearMarkers, createEcoleMarker} from "./map.js"
-import { closeSidebar, createSidebar, deleteSidebar } from "./sidebar.js";
+import { closeSidebarRight, createSidebarRight, deleteSidebarRight } from "./sidebar.js";
+import { reinitModale } from "./mvtIntra.js";
 
 export function initCircoSelector() {
     const selectButton = document.getElementById('circoSelect');
@@ -17,6 +18,7 @@ export function initCircoSelector() {
 }; 
 
 function handleChangeCirco(e) {
+    clearMarkers();
     const circoCode = e.target.value;
 
     if(!circoCode) {
@@ -37,8 +39,8 @@ function handleChangeCirco(e) {
         state.currentCirco = circo;
         centerOnCirco(state.currentCirco);
         clearMarkers();
-        closeSidebar();
-        deleteSidebar();
+        closeSidebarRight();
+        deleteSidebarRight();
         createInspectionMarker(state.currentCirco);
 
     } else {
@@ -67,10 +69,14 @@ function handleChangeCirco(e) {
     
     // appel de la fonction pour créer les marqueurs des écoles (dans laquelle il faut que je supprime tous les marqueurs existants)
     clearMarkers();
+
     createInspectionMarker(state.currentCirco);
     createEcoleMarker(state.currentEcoles);
 
     // création de la sidebar
-    createSidebar(ecolesTriees, circo);
+    createSidebarRight(ecolesTriees, circo);
+
+    // ferme la recherche par la modale
+    reinitModale();
 };
 }

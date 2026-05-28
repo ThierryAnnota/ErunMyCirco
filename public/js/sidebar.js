@@ -1,45 +1,46 @@
 import { centerOnSchool } from "./map.js";
 import { state } from "./state.js";
 
-let sidebar = null;
-let sidebarButton = null;
-let sidebarContainer = null;
+let sidebarRight = null;
+let sidebarButtonRight = null;
+let sidebarContainerRight = null;
 
-export function initSidebar() {
+export function initSidebarRight () {
 
-    sidebar = document.querySelector(".sidebar");
-    sidebarButton = document.querySelector(".sidebarButton");
-    sidebarContainer = document.querySelector(".sidebarContainer");
+    sidebarRight = document.querySelector(".sidebar--right");
+    sidebarButtonRight = document.querySelector(".sidebarButton--right");
+    sidebarContainerRight = document.querySelector(".sidebarContainer--right");
 
-    sidebarButton.addEventListener("click" , toggleSidebar);
+    sidebarButtonRight.addEventListener("click" , toggleSidebarRight);
 };
 
-export function toggleSidebar() {
-    sidebar.classList.toggle('hidden');
-    sidebarButton.classList.toggle('close');
+export function toggleSidebarRight() {
+    sidebarRight.classList.toggle('hidden');
+    sidebarButtonRight.classList.toggle('closeRight');
 };
 
-export function openSidebar() {
-    sidebar.classList.remove("hidden");
+export function openSidebarRight() {
+    sidebarRight.classList.remove("hidden");
+    sidebarButtonRight.classList.add("closeRight");
 };
 
-export function closeSidebar() {
-    sidebar.classList.add("hidden");
+export function closeSidebarRight() {
+    sidebarRight.classList.add("hidden");
 }
 
-export function deleteSidebar() {
-    sidebarContainer.innerHTML = "";
+export function deleteSidebarRight() {
+    sidebarContainerRight.innerHTML = "";
 }
 
-export function createSidebar (ecolesTriees, circo){
-    deleteSidebar();
+export function createSidebarRight (ecolesTriees, circo){
+    deleteSidebarRight();
 
     document.querySelector(".recherche").value = "";
 
     const circoName = document.createElement("h2")
     circoName.classList.add("circoName");
     circoName.textContent = circo.nom;
-    sidebarContainer.append(circoName);
+    sidebarContainerRight.append(circoName);
 
     const nbVilles = Object.keys(ecolesTriees).length;
 
@@ -48,11 +49,11 @@ export function createSidebar (ecolesTriees, circo){
         const ville = document.createElement("h3");
         ville.classList.add("ville");
         ville.textContent = city;
-        sidebarContainer.append(ville);
+        sidebarContainerRight.append(ville);
         };
 
         const ul = document.createElement("ul");
-        sidebarContainer.append(ul);
+        sidebarContainerRight.append(ul);
 
         ecolesTriees[city].forEach(element => {
             const ecole = document.createElement("li");
@@ -82,6 +83,6 @@ export function createSidebar (ecolesTriees, circo){
         });
     }
 
-    openSidebar();
+    openSidebarRight();
     
 };

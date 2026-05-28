@@ -1,3 +1,5 @@
+@import '/variables.css';
+
 html {
     font-family: "Roboto", "Montserrat", sans-serif;
 }
@@ -23,7 +25,7 @@ html {
     z-index: 0;
 }
 
-.hearder{
+.header{
     z-index: 1003;
     position:absolute;
     top: 20px;
@@ -43,9 +45,10 @@ html {
     position: relative;
     padding: 12px 15px 15px 15px;
     height: 45px;
-    border-radius: 20px;
+    border-radius: var(--border-radius-xl);
+    border-color: var(--color-border-tertiary);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
-    background-color: #ffffffc6;
+    background-color: var(--color-background-secondary);
 }
 
 .search-bar {
@@ -53,8 +56,8 @@ html {
     display: flex;
     height: 45px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
-    border-radius: 20px;
-    background-color: #fff;
+    border-radius: var(--border-radius-xl);
+    background-color: var(--color-background-primary);
 }
 
 .suggestions {
@@ -80,7 +83,7 @@ html {
 .recherche {
     width: 100%;
     border: none;
-    border-radius: 20px;
+    border-radius: var(--border-radius-xl);
     height: 100%;
     padding: 20px;
     outline: none;
@@ -92,10 +95,10 @@ html {
 }
 
 .validation {
-    background-color: #fff;
+    background-color: var(--color-background-primary);
     color:rgb(144, 144, 144);
     border: none;
-    border-radius: 20px;
+    border-radius: var(--border-radius-xl);
     width: 50px;
     display: flex;
     justify-content: center;
@@ -113,7 +116,7 @@ html {
 }
 
 .suggestion{
-    background-color: #fff;
+    background-color: var(--color-background-secondary);
     padding: 20px;
 }
 
@@ -129,7 +132,6 @@ html {
 .sidebar {
     position: absolute;
     top: 0;
-    right: 0;
     width: 400px;
     height: 100vh;
     z-index: 1000;
@@ -138,10 +140,16 @@ html {
     transition: 0.3s;
 }
 
+.sidebar--left {
+    left: 0;
+}
+
+.sidebar--right {
+    right: 0;
+}
+
 .sidebarContainer{
     background-color:  rgb(249, 249, 249);
-    border-left: 5px solid rgb(230, 230, 230);
-    border-radius: 10px 0 0 10px;
     display: flex;
     flex-direction: column;
     padding: 0 10px 20px 10px;
@@ -150,6 +158,17 @@ html {
     height: 80%;
     overflow: auto;
 }
+
+.sidebarContainer--right {
+    border-left: 5px solid rgb(230, 230, 230);
+    border-radius: 10px 0 0 10px;
+}
+
+.sidebarContainer--left {
+    border-right: 5px solid rgb(230, 230, 230);
+    border-radius: 0 10px 10px 0;
+}
+
 
 .circoName {
     font-size: 2rem;
@@ -215,8 +234,20 @@ html {
 
 .sidebarButton {
     background-color: rgb(249, 249, 249);
+}
+
+.sidebarButton--right {
     padding: 12px 0 10px 5px;
     border-radius: 5px 0 0 5px;
+}
+
+.sidebarButton--left {
+    padding: 12px 5px 10px 0;
+    border-radius: 0 5px 5px 0;
+}
+
+.sidebarButton--left svg {
+    transform: scaleX(-1);
 }
 
 .hidden {
@@ -224,9 +255,198 @@ html {
     transition: 0.3s;
 }
 
-.close {
+.hidden--left {
+    left: -370px;
+    transition: 0.3s;
+}
+
+.closeRight {
     transform: rotate(180deg);
     padding: 12px 5px 10px 0;
+    border-radius: 0 5px 5px 0;
+}
+
+.closeLeft {
+    transform: rotate(180deg);
+    padding: 12px 5px 10px 0;
+    border-radius: 5px 0 0 5px;
+}
+
+.mvtIntra {
+    z-index: 1001;
+    position: absolute;
+    max-width: 15%;
+    height: 40px;
+    border-radius: 0 10px 0 0;
+    bottom: 0;
+    left: 0;
+    background-color: var(--color-background-primary);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .texte-court {
+        display: none;
+    }
+}
+
+.mvtIntra:hover {
+    cursor: pointer;
+}
+
+.modale--overlay {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
+}
+
+.mvtIntraInteface {
+    overflow: auto;
+    width: 100%;
+    max-width: 480px;
+    background-color: var(--color-background-primary);
+    border-radius: var(--border-radius-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.modale--header {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: baseline;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+}
+
+.modale--stepAdresse {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-around;
+    flex-direction: column;
+    max-height: 90%;
+    padding: 20px;
+}
+
+.modale--closeBtn {
+    outline: none;
+    background-color: var(--color-background-primary);
+    font-size: 30px;
+    font-weight: 100;
+}
+
+.modale--inputAdresseDiv {
+    width: 100%;
+    
+}
+
+.modale--inputAdresse, .modale--stepAdresse--btn {
+    width: 100%;
+    padding: 10px;
+    border-radius: var(--border-radius-md);
+    outline: none;
+    border-color: #fff;
+    margin-top: 20px;
+    border: 0.5px solid var(--color-border-tertiary);
+}
+
+input, button {
+    border: none;
+}
+
+.modale--stepAdresse--btn {
+    flex-shrink: 3;
+    background-color: #fff;
+}
+
+.modale--stepAdresse--btn:hover {
+    background-color: rgb(230, 245, 251);
+    border: solid 2px rgb(199, 234, 249);
+    color: rgb(21, 150, 201);
+    box-shadow: 0 0 8px 0 #a7a7a7;
+    cursor: pointer;
+}
+
+.adressesSuggestions {
+    width: 90%;
+    max-height: 300px;
+    background-color: var(--color-background-secondary);
+    overflow-y: auto;
+    border-radius: 0 0 25px 25px;
+    border-color: #fff;
+}
+
+.suggestionsAdresses {
+    padding: 10px;
+}
+
+.suggestionsAdresseOpen {
+    border-radius: 25px 25px 0 0;
+    border-color: #fff;
+}
+
+.modale--stepFilres {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 20px 0;
+
+    button {
+        padding: 15px;
+        border-radius: 15px;
+        background-color: rgb(249, 249, 249);
+    }
+    button:hover{
+        background-color: rgb(230, 245, 251);
+        border: solid 2px rgb(199, 234, 249);
+        color: rgb(21, 150, 201);
+        box-shadow: 0 0 8px 0 #a7a7a7;
+        cursor: pointer;
+    }
+}
+
+.modale--rappelAdresse {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+fieldset {
+    legend {
+        margin-bottom: 15px;
+    }
+    div {
+        margin-bottom: 10px;
+    }
+}
+
+.modale--nombreClasses {
+    input {
+        width: 80px;
+        height: 25px;
+        text-align: center;
+        font-size: large;
+        border-radius: 10px;
+        padding: 10px;
+        margin: 0 15px;
+    }
+}
+
+.hiddenModale {
+    display : none;
 }
 
 .ecolePopup {
@@ -239,9 +459,9 @@ html {
         text-align: center;
         font-size: 1.2rem;
         font-weight: 700;
-        padding: 5px;
+        padding: 10px;
     }
-
+    
     p {
         padding-left: 5px;
     }
@@ -254,4 +474,44 @@ html {
         background-color: rgb(232, 98, 69);
     }
 
+}
+
+@media (max-width:500px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .hidden {
+        right: -170px;
+    }
+
+    .hidden--left {
+        left: -170px;
+    }
+
+    .mvtIntra {
+        .texte-court {
+            display: inline;
+        }
+        .texte-long {
+            display: none;
+        }
+    }
+
+    .header {
+        flex-direction: column;
+        gap: 10px;
+
+        .search-container {
+            width: 80%;
+        }
+
+        .selectMenu {
+            width: 80%;
+
+            #circoSelect{
+                width: 100%;
+            }
+        }
+    }
 }

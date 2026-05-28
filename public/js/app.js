@@ -2,7 +2,9 @@ import { loadData } from "./data.js";
 import { initMap } from "./map.js";
 import { initSearchMenu } from "./search.js";
 import { initCircoSelector } from "./select.js";
-import { initSidebar } from "./sidebar.js";
+import { initSidebarRight } from "./sidebar.js";
+import { initSidebarLeft } from "./sidebarLeft.js";
+import { initMvtMenu } from "./mvtIntra.js";
 
 async function init() {
     try {
@@ -11,8 +13,10 @@ async function init() {
 
         initMap();
         initCircoSelector();
-        initSidebar();
+        initSidebarRight();
+        initSidebarLeft();
         initSearchMenu();
+        initMvtMenu();
         
     } catch (error) {
         console.error('Erreur : ', error);

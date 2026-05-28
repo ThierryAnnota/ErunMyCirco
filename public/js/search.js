@@ -1,5 +1,5 @@
 import { centerOnSchool, clearMarkers, createEcoleMarker } from "./map.js";
-import { closeSidebar, deleteSidebar } from "./sidebar.js";
+import { closeSidebarRight, deleteSidebarRight } from "./sidebar.js";
 import { state } from "./state.js";
 
 let searchInput = null;
@@ -54,16 +54,16 @@ export function initSearchMenu () {
 
 export function handleChangeInput () {
     const value = searchInput.value
-    const result = state.data.ecoles.filter((ecole)=> ecole.nom.toLowerCase().includes(value.toLowerCase()) 
+    let result = state.data.ecoles.filter((ecole)=> ecole.nom.toLowerCase().includes(value.toLowerCase()) 
         || ecole.email.toLowerCase().includes(value.toLowerCase()) || ecole.tel.replace(/\s+(?=\d)/g, "").includes(value.replace(/\s+(?=\d)/g, "")));
 
     if(suggestion!== ""){
         suggestion = "";
     };
 
-    if(value.length > 2 ){
+    if(value.length > 2 && result.length > 0){
         result.forEach(ecole => {
-            suggestion += `<div class="suggestion" data-id=${ecole.id}>école ${ecole.type} ${ecole.nom} - <span>${ecole.commune}</span></div>`;
+            suggestion += `<div class="suggestion" data-id=${ecole.id}>école ${ecole.type} ${ecole.nom} - <span>${ecole.commune} (${ecole.circo.code})</span></div>`;
         });
         searchBar.classList.add("suggestionsOpen");
     } else {
@@ -99,8 +99,8 @@ export function selectEcole() {
             centerOnSchool(marker._latlng.lat, marker._latlng.lng);
             marker.openPopup();
         };
-    deleteSidebar();
-    closeSidebar();
+    deleteSidebarRight();
+    closeSidebarRight();
     searchBar.classList.remove("suggestionsOpen");
 }
 
